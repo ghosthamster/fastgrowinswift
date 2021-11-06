@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+$backgr: #57504c;
+$text: rgb(219, 219, 219);
+
+html, body { height: 100%; background-color: $backgr;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $text;}
+
+.mat-tab-link, input {
+    background-color: transparent;
+    color: $text;
+}
+
+.mat-tab-list {
+    display: flex;
+    align-items: center;
+}
+
+.mat-button {
+    background-color: darken($color: $backgr, $amount: 5);
+}
+
+.mat-form-field-label {
+    color: $text !important;
+}
+
+.mat-cell, .mat-header-cell {
+    color: $text;
+}
+
+.mat-form-field-underline {
+    background-color: $text !important;
+}
+
+button {
+    background-color: #f46438 !important;
+    color: $text !important;
+}
+
+.mat-table, .mat-expansion-panel-header-title, .mat-expansion-panel {
+    background-color: lighten($color: $backgr, $amount: 5) !important;
+    color: $text !important;
+}

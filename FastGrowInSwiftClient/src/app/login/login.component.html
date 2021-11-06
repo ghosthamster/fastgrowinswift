@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <h2 mat-dialog-title>Вас вітає FastGrowInSwift</h2>
+  <form class="form-container"
+        [formGroup]="userForm">
+    <mat-error>{{ errorMessage }}</mat-error>
+
+    <mat-form-field>
+      <mat-label>Логін</mat-label>
+      <input matInput
+             formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Пароль</mat-label>
+      <input matInput
+             type="password"
+             formControlName="password">
+    </mat-form-field>
+    <button mat-button type="submit" (click)="login()">Увійти</button>
+  </form>
+</div>

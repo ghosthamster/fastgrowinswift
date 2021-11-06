@@ -1,0 +1,33 @@
+<mat-toolbar class="header-wrapper">
+    <img class="logo-img"
+         src="../../assets/58482ce4cef1014c0b5e4a4c.png"
+         alt="logo">
+
+  <div class="pages-wrapper">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link
+         *ngFor="let link of links"
+         [routerLink]="link.route"
+         (click)="activeLink = link"
+         [active]="activeLink == link"> {{link.name}} </a>
+    </nav>
+  </div>
+
+  <div class="profile-wrapper">
+    <span>{{ fullName }}</span>
+
+    <mat-icon class="expand-profile-details-button"
+              *ngIf="loggedIn"
+              [matMenuTriggerFor]="profileMenu"
+              aria-label="Expand profile">
+      arrow_drop_down
+    </mat-icon>
+
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item
+              (click)="onLogout()">
+        Вийти
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

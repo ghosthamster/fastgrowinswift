@@ -1,0 +1,33 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+
+  <div class="example-table-container">
+    <table mat-table [dataSource]="titles" class="example-table"
+           matSort matSortActive="id" matSortDisableClear matSortDirection="desc">
+      <!-- Number Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{i+1}}</td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="titleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Тема</th>
+        <td mat-cell *matCellDef="let row">{{row.titleName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="button">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-flat-button color="primary" (click)="chooseTheme(row.id)">Обрати тему</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

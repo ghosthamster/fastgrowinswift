@@ -1,0 +1,11 @@
+.wrapper {
+  padding-top: 2%;
+  width: 50%;
+  margin: auto;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+  }
+}

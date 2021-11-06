@@ -1,0 +1,84 @@
+<div *ngIf="isLoading; else tasksTemplate" class="page-loading-shade">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #tasksTemplate>
+  <div class="task">
+    <div class="title">{{currentTitle?.titleName}}</div>
+
+    <div class="task-container">
+      <mat-accordion class="example-headers-align" *ngFor="let item of currentTasks; let i = index">
+        <mat-expansion-panel class="task-panel"
+                             [expanded]="step === i"
+                             (opened)="setStep(i)"
+                             hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title style="display: flex; justify-content: space-between">
+              <span style="max-width: calc(100% - 120px)">{{ item.content }}</span>
+              <span style="margin-left: 10px; width: 100px;">{{ answers[i].timeOfExecution | date: 'mm:ss'}} /
+                {{item.dificultyCoef * 60 * 1000 | date: 'mm:ss'}}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="task-body">
+            <ng-template [ngIf]="item.typeId === 1">
+            <div class="example-container">
+              <h2>Елементи коду</h2>
+              <div
+                cdkDropList
+                #todoList="cdkDropList"
+                [cdkDropListData]="item.taskItems"
+                [cdkDropListConnectedTo]="[doneList]"
+                cdkDropListSortingDisabled
+                class="example-list"
+                (cdkDropListDropped)="drop($event, item.taskItems, i)">
+                <div class="example-box" *ngFor="let item of item.taskItems" cdkDrag>{{item.content}}</div>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h2>Відповідь</h2>
+              <div
+                cdkDropList
+                #doneList="cdkDropList"
+                [cdkDropListData]="selectedTasks[i].taskItems"
+                [cdkDropListConnectedTo]="[todoList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event, selectedTasks[i].taskItems, i)">
+                <div class="example-box" *ngFor="let item of selectedTasks[i].taskItems" cdkDrag>{{item.content}}</div>
+              </div>
+            </div>
+            </ng-template>
+
+            <ng-template [ngIf]="item.typeId === 2">
+              <textarea [(ngModel)]="selectedTasks[i].taskItems[0].content"
+                        class="textarea"
+                        matInput
+                        rows="15"
+                        placeholder="Впишіть свою відповідь"></textarea>
+            </ng-template>
+          </div>
+          <mat-action-row>
+            <div *ngIf="errorMessage" class="rating-container">
+              <mat-error>{{errorMessage}}</mat-error>
+            </div>
+            <div *ngIf="results" class="rating-container">
+              <app-star-rating starCount="10" rating="{{results[i].correctnessPercent/10}}"></app-star-rating>
+            </div>
+
+            <button *ngIf="step>0" mat-button color="warn" (click)="prevStep()">Попереднє завдання</button>
+            <button *ngIf="step<currentTasks.length-1" mat-button color="primary" (click)="nextStep()">Наступне
+              завдання
+            </button>
+            <button *ngIf="step===currentTasks.length-1" [disabled]="isComparing" mat-button color="primary"
+                    (click)="compareWithEtalon()">
+              <span class="button-text-container">
+                Порівняти з еталоном
+              </span>
+              <mat-progress-bar *ngIf="isComparing" mode="indeterminate"></mat-progress-bar>
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</ng-template>
