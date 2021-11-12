@@ -19,8 +19,8 @@ export class AccountService {
     return this.http.get<UserDTO>(`${this.host}/get-by-id/${userId}`);
   }
 
-  public registerUser(parameters: UserDTO) {
-    return this.http.post(`${this.host}/register`, parameters);
+  public registerUser(parameters: UserDTO): Observable<number> {
+    return this.http.post<number>(`${this.host}/register`, parameters);
   }
 
   public login(user: UserDTO): Observable<number>{

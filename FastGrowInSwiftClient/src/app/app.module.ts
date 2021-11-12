@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TaskResultsComponent } from './task-results/task-results.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TaskResultsComponent } from './task-results/task-results.component';
     StarRatingComponent,
     PerformTaskComponent,
     LoginComponent,
-    TaskResultsComponent
+    TaskResultsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { PerformTaskComponent } from './perform-task/perform-task.component';
 import { LoginComponent } from './login/login.component';
 import { TaskResultsComponent } from './task-results/task-results.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'choose-task',
