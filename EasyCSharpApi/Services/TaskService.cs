@@ -35,8 +35,8 @@ namespace EasyCSharpApi.Services
             var mappedTitle = _mapper.Map<TitleDTO, Title>(title);
             var newId = _unitOfWork.TaskRepository.CreateTitle(mappedTitle);
             _unitOfWork.Save();
-
-            return newId;
+            var crutch = _unitOfWork.TaskRepository.GetAllTitles().OrderByDescending(x=>x.Id).FirstOrDefault();
+            return crutch.Id;
         }
 
         public int CreateType(TypeDTO type)
