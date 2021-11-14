@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { TaskResultsComponent } from './task-results/task-results.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'choose-task',
     component: ChooseTaskComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'create-task',
+    component: CreateTaskComponent,
     canActivate: [AuthGuardService]
   },
   {

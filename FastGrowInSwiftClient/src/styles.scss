@@ -10,6 +10,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $tex
     color: $text;
 }
 
+button:disabled {
+    background-color: rgb(134, 134, 134) !important;
+}
+
 .mat-tab-list {
     display: flex;
     align-items: center;

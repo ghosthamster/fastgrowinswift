@@ -1,0 +1,37 @@
+<div class="wrapper">
+    <h2 mat-dialog-title>Створення завдання</h2>
+    <form class="form-container"
+          [formGroup]="createForm">
+  
+      <mat-form-field>
+        <mat-label>Назва</mat-label>
+        <input matInput formControlName="TitleName" type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Опис</mat-label>
+        <input matInput formControlName="content" type="text">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Складність</mat-label>
+        <input matInput formControlName="dificultyCoef" type="number">
+      </mat-form-field>
+
+      <div style="margin-left: 10px; display: flex; flex-direction: column;">
+        <p style="font-size: large;">Відповіді:</p>
+        <mat-form-field *ngFor="let group of taskItems.controls; index as i">
+            <mat-label>Відповідь {{ i+1 }}</mat-label>
+            <div style="display: flex;">
+                <input matInput [formControl]="group.controls.content" type="text">
+                <button (click)="removeAnswer(i)" style="border-radius: 50px; background-color: rgb(255, 0, 0) !important; height: 30px; width: 30px; border: none; cursor: pointer;">-</button>
+            </div>
+        </mat-form-field>
+      </div>
+
+      <button mat-button (click)="addAnswer()">Додати відповідь</button>
+
+
+      <button mat-button type="submit" [disabled]="createForm.invalid" (click)="createTask()" style="margin-top: 10px;">Створити завдання</button>
+    </form>
+  </div>

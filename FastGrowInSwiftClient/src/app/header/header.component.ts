@@ -11,8 +11,9 @@ export class HeaderComponent implements OnInit {
   fullName = '';
   loggedIn = false;
   links = [
-    {route: 'choose-task', name: 'Обрати тему' },
-    {route: 'statistic', name: 'Статистика' }
+    {route: 'choose-task', name: 'Обрати тему', display: () => true },
+    {route: 'statistic', name: 'Статистика', display: () => true },
+    {route: 'create-task', name: 'Створити завдання', display: () => this.accountService.userName === 'admin' }
   ];
   activeLink = this.links[0];
   constructor(private router: Router, private accountService: AccountService) { }

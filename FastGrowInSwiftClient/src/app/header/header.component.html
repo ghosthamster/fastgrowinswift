@@ -5,11 +5,13 @@
 
   <div class="pages-wrapper">
     <nav mat-tab-nav-bar>
-      <a mat-tab-link
-         *ngFor="let link of links"
+      <ng-container *ngFor="let link of links">
+        <a mat-tab-link
+        *ngIf="link.display()"
          [routerLink]="link.route"
          (click)="activeLink = link"
          [active]="activeLink == link"> {{link.name}} </a>
+      </ng-container>
     </nav>
   </div>
 
