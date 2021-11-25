@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url: "https://localhost:44352",
-  url: "https://localhost:44352"
+  base_url: "https://localhost:44390",
+  url: "https://localhost:44390"
 };
 
 /*
